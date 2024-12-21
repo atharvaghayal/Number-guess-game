@@ -1,0 +1,55 @@
+Dim RandomNumber As Integer
+Dim AttemptCount As Integer
+
+Sub StartGame()
+    ' Initialize the game
+    RandomNumber = Int((100 - 1 + 1) * Rnd + 1) ' Generate random number between 1 and 100
+    AttemptCount = 0
+    MsgBox "Game Started! Guess a number between 1 and 100.", vbInformation, "Number Guessing Game"
+    
+    ' Clear previous feedback and reset attempt count
+    Sheet1.Range("C8").Value = "" ' Clear feedback
+    Sheet1.Range("H4").Value = "0" ' Reset attempt count
+End Sub
+
+Sub CheckGuess()
+    ' Get the user's guess
+    Dim UserGuess As Integer
+    Dim Feedback As String
+    Dim Difference As Integer
+    
+    On Error Resume Next
+    UserGuess = CInt(Sheet1.Range("C6").Value)
+    On Error GoTo 0
+    
+    ' Increment attempt count
+    AttemptCount = AttemptCount + 1
+    
+    ' Update attempt count on the sheet
+    Sheet1.Range("H4").Value = AttemptCount
+    
+    ' Calculate the difference
+    Difference = Abs(UserGuess - RandomNumber)
+    
+    ' Provide feedback based on the difference
+    If UserGuess = RandomNumber Then
+        Feedback = "Correct! You guessed it in " & AttemptCount & " attempts."
+        MsgBox Feedback, vbInformation, "Congratulations!"
+        Exit Sub
+    ElseIf UserGuess > RandomNumber Then
+        If Difference > 10 Then
+            Feedback = "Too High!"
+        Else
+            Feedback = "High!"
+        End If
+    Else
+        If Difference > 10 Then
+            Feedback = "Too Low!"
+        Else
+            Feedback = "Low!"
+        End If
+    End If
+    
+    ' Display feedback on the sheet
+    Sheet1.Range("C8").Value = Feedback
+End Sub
