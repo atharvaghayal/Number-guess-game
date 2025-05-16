@@ -40,5 +40,4 @@ This is my first project done using MS Excel tool. This is a fun Number Guessing
 - ![no guess game ss2](https://github.com/user-attachments/assets/b57737b0-c75c-4cec-964a-225f8706221b)
 - ![no guess game ss1](https://github.com/user-attachments/assets/5db61d93-a74c-4a14-af49-21bacb959bc4)
 
-## Developer Info
-- Developed by: [Atharva Ghayal]
+Built with ❤️ by Atharva Ghayal
